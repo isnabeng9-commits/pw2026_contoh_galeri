@@ -1,0 +1,230 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Mengatur tampilan utama */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #d9f3ff, #f9e1ff);
+            color: #333;
+        }
+
+        /* Bagian header */
+        header {
+            background: linear-gradient(135deg, #7b2ff7, #f107a3);
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 35px;
+            margin-bottom: 12px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Menu navigasi */
+        nav {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #7b2ff7;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #f107a3;
+        }
+
+        /* Bagian pengenalan */
+        .pengenalan {
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        .pengenalan h2 {
+            font-size: 28px;
+            color: #7b2ff7;
+            margin-bottom: 15px;
+        }
+
+        .pengenalan p {
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        /* Judul galeri */
+        .judul-galeri {
+            text-align: center;
+            color: #7b2ff7;
+            font-size: 28px;
+            margin: 20px 0 30px;
+        }
+
+        /* Susunan kartu galeri */
+        .galeri {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 20px 40px 50px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Kartu setiap kartun */
+        .kartu {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        /* Efek 3D ketika kursor diarahkan */
+        .kartu:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(123, 47, 247, 0.3);
+        }
+
+        /* Gambar kartun */
+        .kartu img {
+            width: 120%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .kartu:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Deskripsi kartun */
+        .deskripsi {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .deskripsi h3 {
+            color: #7b2ff7;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .deskripsi p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Tombol informasi */
+        .tombol {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #7b2ff7, #f107a3);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .tombol:hover {
+            transform: scale(1.08);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Bagian informasi */
+        .tentang {
+            background-color: white;
+            margin: 20px 40px 40px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tentang h2 {
+            color: #7b2ff7;
+            margin-bottom: 15px;
+        }
+
+        .tentang p {
+            line-height: 1.8;
+        }
+
+        /* Bagian footer */
+        footer {
+            background: linear-gradient(135deg, #7b2ff7, #f107a3);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        /* Animasi muncul */
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .kartu {
+            animation: muncul 0.8s ease both;
+        }
+
+        /* Tampilan tablet */
+        @media (max-width: 900px) {
+            .galeri {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 20px;
+            }
+        }
+
+        /* Tampilan HP */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 26px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+                font-size: 14px;
+            }
+
+            .galeri {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .tentang {
+                margin: 20px;
+            }
+        }
