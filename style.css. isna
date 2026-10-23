@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Galeri Animasi Kartun 3D</title>
+
+    <style>
+        /* Mengatur seluruh halaman */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Mengatur tampilan utama */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #d9f3ff, #f9e1ff);
+            color: #333;
+        }
+
+        /* Bagian header */
+        header {
+            background: linear-gradient(135deg, #7b2ff7, #f107a3);
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 35px;
+            margin-bottom: 12px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Menu navigasi */
+        nav {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #7b2ff7;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #f107a3;
+        }
+
+        /* Bagian pengenalan */
+        .pengenalan {
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        .pengenalan h2 {
+            font-size: 28px;
+            color: #7b2ff7;
+            margin-bottom: 15px;
+        }
+
+        .pengenalan p {
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        /* Judul galeri */
+        .judul-galeri {
+            text-align: center;
+            color: #7b2ff7;
+            font-size: 28px;
+            margin: 20px 0 30px;
+        }
+
+        /* Susunan kartu galeri */
+        .galeri {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 20px 40px 50px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Kartu setiap kartun */
+        .kartu {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        /* Efek 3D ketika kursor diarahkan */
+        .kartu:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(123, 47, 247, 0.3);
+        }
+
+        /* Gambar kartun */
+        .kartu img {
+            width: 120%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .kartu:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Deskripsi kartun */
+        .deskripsi {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .deskripsi h3 {
+            color: #7b2ff7;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .deskripsi p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Tombol informasi */
+        .tombol {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #7b2ff7, #f107a3);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .tombol:hover {
+            transform: scale(1.08);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Bagian informasi */
+        .tentang {
+            background-color: white;
+            margin: 20px 40px 40px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tentang h2 {
+            color: #7b2ff7;
+            margin-bottom: 15px;
+        }
+
+        .tentang p {
+            line-height: 1.8;
+        }
+
+        /* Bagian footer */
+        footer {
+            background: linear-gradient(135deg, #7b2ff7, #f107a3);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        /* Animasi muncul */
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .kartu {
+            animation: muncul 0.8s ease both;
+        }
+
+        /* Tampilan tablet */
+        @media (max-width: 900px) {
+            .galeri {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 20px;
+            }
+        }
+
+        /* Tampilan HP */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 26px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+                font-size: 14px;
+            }
+
+            .galeri {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .tentang {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Bagian header -->
+    <header id="beranda">
+        <h1>🎨 Galeri Animasi Kartun Dhot Disaign 2D</h1>
+        <p>Kisah Drama, Karakter Lucu, komedi dan karakter misteri</p>
+    </header>
+
+    <!-- Menu navigasi -->
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#galeri">Galeri Kartun</a>
+        <a href="#tentang">Tentang Kami</a>
+    </nav>
+
+    <!-- Bagian pengenalan -->
+    <section class="pengenalan">
+        <h2>Selamat Datang di Dunia Kartun!</h2>
+
+        <p>
+            Animasi Dhot Design adalah serial animasi 2D asal Indonesia yang dibuat oleh Mas Indra (atau dikenal dengan panggilan Pak Badhot) sejak tahun 2019.anal ini sangat terkenal dengan serial "Animasi Sekolah" yang berlatar di Dhokona School serta berbagai kisah drama, komedi, dan cerita misteri yang dekat dengan kehidupan sehari-hari
+        </p>• 
+        <p>Tema Cerita: Berfokus pada kehidupan masa sekolah, kisah romansa SMA yang kerap menggantung/tidak kunjung selesai, persahabatan (seperti kelompok "Geng 4G" yang terdiri dari karakter seperti Dhot, Kona, Robi, dan Peot), serta drama komedi keseharian.
+• Platform & Popularitas: Berkembang pesat di platform digital seperti YouTube Dhot Design dan TikTok, dengan raihan ratusan juta hingga miliaran penayangan.
+• Perkembangan Terbaru: Serial animasi ini dikabarkan masuk ke tahap adaptasi layar lebar serta sempat meramaikan wacana film live-action.
+</p>
+    </section>
+
+    <!-- Bagian galeri -->
+    <section id="galeri">
+        <h2 class="judul-galeri">🌈 Koleksi Kartun </h2>
+
+        <div class="galeri">
+
+            <!-- Kartun 1 -->
+            <div class="kartu">
+                <img
+                    src="data:image/jpeg;base64,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"
+                    alt="animasi">
+
+                <div class="deskripsi">
+                    <h3>Kona</h3>
+                    <p>
+                        Kona adalah salah satu karakter utama dalam serial animasi 2D Dhot Design yang dibuat oleh Pak Indra (Pak Badhot).
+
+Karakter dan Peran Kona
+
+• Kepribadian: Digambarkan sebagai karakter yang bad boy, rebel (pemberontak), konyol, usil, dan sering bertingkah lucu.
+• Ciri Khas: Selalu tampil mengenakan topi.
+• Latar Belakang dalam Cerita: Kona merupakan bagian dari kelompok persahabatan Geng 4G bersama Dhot, Robi (Roby), dan Peot. Karakter Kona sendiri terinspirasi dari anak Pak Badhot yang lahir pada masa pandemi.
+• Adaptasi Film: Serial Dhot Design akan diadaptasi menjadi film live-action oleh MD Pictures, di mana karakter Kona bersama Geng 4G akan dihidupkan ke layar lebar.
+Apakah Anda ingin mengetahui lebih lanjut mengenai.
+                    </p>
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div>
+
+            <!-- Kartun 2 -->
+            <div class="kartu">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRve4uLnxFK-OhTZmTvD-qMPWfv6xAWNy1L3f9OayOhgg&s=10"
+                    alt="Animasi">
+
+                <div class="deskripsi">
+                    <h3>👑 Dhot </h3>
+                    <p>
+                        Dhot dikenal dengan sifatnya yang bijaksana , baik, pintar.
+                    </p>
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div>
+
+            <!-- Kartun 3 -->
+            <div class="kartu">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfY_hdnVYbZvv8_QyqMY0qF0mR1AFEuP7SmOcrYMYpxQ&s=10"
+                    alt="Ilustrasi hewan lucu">
+
+                <div class="deskripsi">
+                    <h3>🐻 Peot</h3>
+                    <p>
+                       Dalam serial animasi populer Dhot Design, Peot merupakan salah satu karakter utama yang tergabung dalam Geng 4G bersama Kona, Dhot, dan Robi 
+                    </p>
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div>
+
+            <!-- Kartun 4 -->
+            <div class="kartu">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiAJg2Np6X783hbRjrkcD-MQFZJwzokJFyDkDKydOpzA&s"
+                    alt="Ilustrasi pahlawan luar angkasa">
+
+                <div class="deskripsi">
+                    <h3>🚀 Robi</h3>
+                    <p>
+                        Pahlawan luar angkasa yang berpetualang
+                        menjelajahi planet dan galaksi yang jauh.
+                    </p>
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div><!-- Bagian galeri -->
+    <section id="galeri">
+        <h2 class="judul-galeri"> Karakter Pendukung</h2>
+
+        <div class="galeri">
+          
+
+
+
+            <!-- Kartun 5 -->
+            <div class="kartu">
+                <img
+                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQAvAMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAEBQMGAAIHAQj/xABFEAACAQMCAwUGAQoCCAcAAAABAgMABBEFIQYSMRNBUXGBByIyYZGhFBUjM0JSYoKxwdGi8BYkU5KjssLhJSc0NWNys//EABgBAAMBAQAAAAAAAAAAAAAAAAABAgME/8QAHREBAQEBAAMBAQEAAAAAAAAAAAERAhIhMQNBUf/aAAwDAQACEQMRAD8ApESb070lMsKVxLuKdaWvKc46Vd+IiwwKOlGxxr1NKe3KnbasN23jWN7a+J/GqeIomMJ4iqst647z9a2bUjFGXlkCKoyxJ2Apli3BV65qVRH3sM1zifiucsRZQcyAfppWIB8h1Prigm1bX7kljeSLERssCcv33NGwZXW4hH4it8ofAVxyE3sodpNX1GPk3ObuQfYGpV1LVbJVaHW55UY7c0vaKfPmqfKK8K663KOhFYOUg5PlXONP4xuImWPUYgUJx28HQeancDyzVoi1MTRJJFKHjcZVlOQaVuF42pdYQE5quTx+8acz3Hadf50DKgY5qLda88l3Z1G0e9HsgoeUgd1KU6EaMVE8dEPIahZ/lT8aXlAzx0O8dFO3yod2+VXJU+QV0qB46Kc1A7fKnlLyCSJQ7JvRb1FijBpnFHuKc6dHsaWQjenemLla2rGRkqkNtURBNFzqebYetV3TZ3tbeJ3LyQEfnFJyyNncj5Z6iuee66P4ay8kMDTzPyRqMlqTqJNTnElxmO1jOVQt9M/P+VZxDeCa4htYSZEjAkKKdmY9CT4Ab+tASSy/m1kK8qBnwnTp3/WqtvxMnvTbNjbQSS8qvyhiCe8+H8hXi3C20scDHMhiLu3cDjoB3daUup/AQxHoHX1y/MfvmjVjMomnbfk5I8n97mP/AE1Ei9QT3JZRdxBgDuy53x31pPEkkDNGVGd8gYDedaBX7CaFf0kbcyfzX+3pUluVDNH1jkHOgx+qeo9P608AZZXiHvZKg8pHUg+Hn4Hvpnp19LZSdtaP2kL7yQ52ceI8G/yaBjQO5UnmKfm5AerL+qa9tXaGd7d2z3gn/Pf/ADBopL3Z3Ud9bpcW7FkcZ32IPeCPGpt6qmj6gNP1EQzECC62JI2D9AfuAfSrhy1n1Mac+w7g4oWWMt0o8rWhCjrT4+p/QqkgYVC0DU3fl8BUfKvgK6sc+k8lu2KhaA05nUeAoRuUdaBpXJbtQ727U3kK42xUDY+VLATSRFTvUYWmFwB4ULRgGwklhVh0pcg0igXcVYtJTYD5VV+FG160cCNJKeVFGSfCkMCkvLPJGIFkbmEfN8PzPzPfTrXbKe8hijgZBiXmcONmABx98H0pfJpKiKWaR2uZ1RuVWGEBx3L0PrXPz6bqrbQ9sjtgKkjkkjrJv1z3D5VJKvM7pj3TCR96jSCTsYzFMxQqDylsY8jipLdexliDJyl+YfEWyeu5+tMMlINnC4/bjP8AiH96Z84h0G/l64vLVT8gecf1pWU5bKWHO8L59AeYfbFOLSFLzTdbtMM3PZpcqFGTiGQMcfwsaIKXi3lNzLOg/MxxoJD4ZYhT9dvWoeVo4+YZIhdin7wG5H+6w/yKsfCNqmqtqmnySCNrvT8Izj4JEfKn0Yg0l0mK4aK8srrefszcQqu7CWElZFwN88jeowaeFoaeHmka4tyOZ4cbHrg7H6mo5WFzDBdIpR393LDHK3UZ9f50yttD1iW2S6SzaCziuPwwacFCRIMBgCNwCw3+Vb6hZ3Elvbvar2AhtYTPzpzESLjJI6ICDtzHJ5elGFpbeIl5Yc+cKPfyR8OOox5Zq48M30l5p5S5BFzbOYZc9SR0PqMVSO1Gn30mnoZp7d2DRyTR9meRtskdKtGgyvFfWrPnlvbYpIe4zxHl+pXP0qe+fS+b7WRulB3DEA0eV2NBXKHHSs/z+n+hc8xz1r1JSTWkkTZO1exI3hXU528khIoKaQgGjWjOOlB3EZx0oGAmlNeGSsaE56GvTHQAznJqPGandD4VHymlThhADkVZNGUs1IIhuKs2gr+crTqemcpjJYMR0+tR/kwyBk5fjHL9atUMKMi5A6URFax/s1z3i63nXp85QP8Ag2ktpf0ccjJzEkGMqSD6bUU4AiLdszmNhIA2Mgd/dvtmm/tM0oaRxTcvECIbsC6VfAk4cfUZ/ipBZR3c9xFa2Vs93I/MI7dRljtk4PcMeO1Ow5R0J7WPnYAFsq/ptU/Dt9LbanZxRXNvBO7mzdpl5gFf3clcjP6v1pMHvbSd7ZrWW3njPvrcKVwRsNupyuB51beBrCy1LUZLHVnNxFdRidEDciM646gdfdwRk9xpDfRdr9louiXhiXVG1S5CFrhmkQxx5yOURr8THHQ5A2JFEcKW7ao8Nzb8O6ktit0Imvorwhom7mCogAxnfAIHftV017hDTTaXWn2SQ2MWpKoWYL7sU8e6Z8FYZHn51p7OdCvOD9J1Ia5cRxpLKGiUS8yhQDlh5k9B1qt9IxMIuIJb/UNLg1N+XTbdJraR7dXN078xVJCdjjlxlcHfNc24zSWzuNCGry3E2nzWsd08aAEc+fzmR0Zs9SfHurtumrIXuLyUGM3LgqG2KoowvMO49Tj50iuNDi1yCP8AEW9nJHbzSEW11GxEEvNvylSDynY8pz3VPPU/qryo3tIsLaDiq7hhXs44441XB+GMAnA8AK30Bll0Pt/17bUBIM92cBvsxrfjyGVeIr38RMbid7aMtIVC9zbADoKh4fTtLLV7NTjmuGXyyin+tP6J6XhIQ3r4V5JYFxsDWulyFigYgkgZx41bra3Tss8o+lR44fVUmTTSvxKRQkluqNvVp1x1XKgAGqncSHtDWtqMbiANtjaoJ7Ub7GirSQnGTXt0djRowqe0XFQSQAdwoqRzQzNvRKWBZIBjvoVo8HpTN/hoGQ++aeaE8XUVZ9B/SYqtwruKsejHlbPzrXr4y5Xm3YKgGaLikUdSKq8t+U2Umhzqko/WrC9NpyX+2uzim0ay1P3Q1tP2Uh/+OTb+YFUfgy5sEttSt72UwzzpGkcokKe6sgMoyO/lBbHfy1cuIJPyrpF3ZSt7ssZxnuYbg/UVyW3ByUYHcZ8PI/58KDXziG0keGCVXF1NZzSRmEktLGnM57I95UphkJ8fKkoWXTLiyvbGTtLSR/xGm3g6MwJ5o28GG4I86P4R41/IkBsL+wa8hjYdm6EGRFzkD3tiBt08Ks+gR6VqkThrc2+j6w7FLKcghZ1O5jZdkbbdfUHrRomrdpl/Z67pMdzAqy21whV0YA4OcMpHyO3pW9vpljbSCWG0iWRfgblyV8s9KX8OcOx8PtdLb3k00MzBjHIo2bpnI6nGB6UZrFpcXlpyWV49rOh5lcdD8j8vLpWF+tf4OySdzvmoYIIYpZ5ojvO/aOc7ZAA29AKqEuhcRX+be8u2jhb9I4uebPkABT/XNRt+G+HnnVQiQRiOCMb5fGFH1xT8f4Nc84pxrXFt3a2jnMzi25gfhCDDt6ZNHabYPDPftysolumKgjuAVfptWns7jtYtGlu3Ae+mnlE1wwy8nvHqfD+9WVnU7mqvUnpGa30i3IcFu6rgjqsAHMOlVBLnsx7taSam42DGnLqbyY60gkbNVieD3qMl1Bn+I5oZrgGtM2FHttFy1tOmRtUf4oL0qN7tT1NGFrxrbO9QNajNbtdAd9QSXm1LD1rNCFWlkie9RM11nvoUyAmq+EOip5pu2aQxmnmnHc1VvpEgi4Y8x3ofnJ76muOtDiua/XTPjzsi/dsa5jcRHtHC7Mjnl+tdVSVEQsTsoya5bJJ2jvJ+2Sw9d61vxnPqDmMqiRRh0J93Pf4Grj7Pdfs4ml0bVhGdPvWyFlGRHL4Hwztv44qloQks0gGwkw48wDmrRwhw/BxO19payJBqHZie2lf4XA2ZGHhuDnuzRmm6ottqulnktHGoQDpFdSlZYx+7Jg83k2POt01lFH+uWN9anOD2kPMB6pkVWeBuIL22vTwxxEJlvociCSQ5JAGeQnv23B7x5VeTktt9qy69Lm0pn4n0OBuWfU4ImA6O3Lt61ynj/iQ8Qayi2zt+TrN8QruO0YgjtCPsP+9WH2s6cJL22v4i8kiwBJERdoYgW99j3ZZlA8j4Vz+y064vobqWFWdrW355FHXkVsFvTIPlmr55n1F6XLgqT/wiWNTuk7Z9cH+tWDmPjVR4IuCLq8tWIw6rKuO8jZv+mrdisu/Va8zYwscda05C1bGto25Tk0/z+p7mRE9u2OlaC3bPSjWlQjrWgkXNdLADLAwGSKg5DTGaRSNqDMig7mgBpIie6oGhJ7qNedPGommXwoBXcIVobJo27YN08aBzuaVOGcTU50+UL18Krcbkd9HQXDKAM71diT6aQMdqHdtqBF4ApZ3Ax1JOKG/HXWogJpY5Y84a6ddvJB+sfn086wvF1rOvSPiDUltbCVFlCTyoUiXO5J26VUAAAAOgq3cVcMTaLw7BdyRvm6u0DyTHmkf3WIJPcMjptVYs7Sa+u4rO3/TS/D+6OpY+AAyT5Vd/woCgUc05O/O2ft/bFWT2bXbWPHGkAbiSdrdvmjocfcL9KRydj2rm3AERb3Pmo2B+gFWT2Z6YdQ48018HltOa4fyUED7sKIHQfa9w6J9PTiOxzHqGncrtIvUxqc5P/wBTv5ZrT/SvstBhvbu3C3dxbrNboGLJMCQCVwM7E5K4z4Zp9xjxNDp4OkWsaXWpXEe8DZKRRtkc0ny64HU1yzhnT7tNQ4Xk5p5PwOo9g0TEkcgdk5gvdjf707zKUtjrOjaLpl5o91JJJFfnVo/9auUO0q4wFXwUZOB8yepNcz4bs24J9oy6dq5LwTwyxRyldpoyMgn/AHcH5+ddJu9Lu9EvpdU4eh7WKd+a903mwJP34s7K/wAujee9KOO20XingS81KJpHezjaSGRAY5oJQMcpB3B8VNGFrnk/CusaVZWfEumRrHp85MvZohkezgc5AZM5YBcdDnarDcR6rpsCS6npzSWzLzLeaee3hIPeQPeH09a6fogul06OC/tEt5IB2PKjhkdVGAy9+D4Het9J0my0e2a20+AQwNI0nZgnALHJx4D5UrxKc7scqt7u2u4+e1mjlXplDWsj4ro2t8G6DrbGS8sUS47rm3JilH8S4P1qsal7PdStlLaJqyTqOkOopk48O0Xf6g1PP55Tve/VaaWtO3NazQXdnePY6lbi2vYkDNGrh1KnoykdR18sVqUIrXUN2mODQM8zdxollOKEmQmgIO2bxrGlOKzsz4Voyt4Ug0d89a0zWMDnpXmKVVDFIB4VII+VSWOFAyxPcPGiAuKA1d2dIbKM4a4fDnwjG7fXYetUkRw3obcRT/ip1/MjDqknwRJ3MR3setdX0bR7DTkXsIg7hcdo++R8vClPCFpHBpSsUUG4PMRju6AeWK00m/k0viCXQ7uRmikHbWcj9Sp/Uz346fTxoA/2i6U2tcIXsECc88XLPEB1LIQceoyPWuZaRDFZey/XdaQc1zezLYK/ekZdVYA/MM1dtVhy4IGMdCK51xTwtc2Oh69YabFLNp9435QhjRcmCaNldo8DucKceB2qbD1ymKGS4mSGCNpZXPKkUYyzH5Cuh8K6TrvDV3PDZpH+V7yJY5Ff3lhHUEeJAJ+WfKrt7NtD03TuGtPvIII2vLm3WWa5KjnctvjPgM4x8qtawQrK0yxqJXAVnxuQPnRh6qFro2m8HaPc6xqsrXFzGhlmml95pJO7zYnAHoBShtLv9N4d0zUEQjUYo2up4A3vczOZT6ZJU+dXy/0y21Ga3a9XtUgcOkLboXB2YjvI7vrVWivXn9oaxu2Y3imgAJ7gAf55qiXK3mjureK4ibmjlQOjDvBGapXtC0a67Nb3RbWSWW8dLW/iiG0kTMMSEDqykdfBjmnnBGV4YsoXYs1sGt2J8UYr/Sn1ImEDNZWV5QHtZWVh86A5f7RQP9InvlUj8nx2iysBsUmkdCD6kGo5NNIztvRfECxazwrxVe82BdX6Wsbr3LFJHGCP4gxqfQrl7/SFN0vJeW8jW1yhGCJEOM4+YAPrTBM9lgbrQclnk9MVap4l5TtSiXZ8UjKTYHHT7UNLZkbYqzIqlNxQsyDPSloVmW1KjOKEMWDVgvAAh2pMxGaAasIsfED5GlNih1DiKSMDmEYWBcd2fec/y+lLfypyAsx2UZJzT/gGBmcXMoIfl7Vs9zP3egqidKtmCRqkYAUABQD0FV3jOSK80c6hak/itJm7SRejBOjgjyIYeQpzDJjpSjiHTZQJNV0o8t6kfJLGfguIz1Rh6nB7qAuNhcCa0gkDcweNWyD1yKOR8gZqg8J3s957P4nh5o54oZI48ncGNiBn6VcLO5W4toZk+CRA4PyIzSA+0jhtoEht41iiXPKi9Bk5P3NEhqCR6mV6AIzXNoG5faRY/vXE4/wH+1dFV651pw7b2mW6/wCzNzL9MKP+amFt4O/9qmb9q+uT/wAVqe1X+CjjQuvW7uf/ANnp6XABJIAHUk9KQb1lRRzRyoHikWRD0ZDkH6V6z4NAbk4pdrt+NO0a/vc/+nt3kHmATRbvgZOwzjJqtcaXBa20/TEPvajfRwnbOUHvv9kI9aAUanYPpvs603TWOZ2ns1kI/Xdp0Zz65Y1moMNM41uLcryw6tB+IUj/AG0YCt9U5T/CatV7bw3axrOvMI5UlUdMMpyPvVW9oimLSItVjUGbTrlJs/uN7kn+FifSgN7mZQuAe6ksswMnUUDLqhYZB90igpL4Zz1NBrNFICndQk7gHc0k/KrqpANCzam7HJNBGV/JlDvSNn361rNqDNsTQZn3pAgT87yROcpIwVh4jNdV4WQJpiuvxO29ZWVQWGFjRsTE7VlZSAbhZVj0pI0UBWklJGP3jRHCkjNpAj2CwTTQJj9lJWVfsorKygHiE1MpNZWUBIrHNc+0Q/8Amcvyguv+dKysphZ+C2P5GlHhfXQ/4z0/BJGM9+K8rKATanw/pV+4knskWU4HawkxuPVSDQEnC6xL2cGta3HGP1Rek+mSCfvWVlIAtM0myt7m4u5Inurm3uljjlu5XlIG2/vHAO/cBTC7/P8AF1ikgBWCzmmQeDlkXP0J+tZWUzNHJFLNZt47zTLu2uF5opYXRx4gg1lZSJx60ldrOEk7lFz9BWFieprKygInJ8agkJ8a9rKAGdjnrXgJrKykH//Z"
+                    alt="Pemeran pendukung">
+
+                <div class="Design">
+                    <h3>🪄 Sintia</h3>
+                    <p>
+ (atau Chintia) adalah salah satu karakter perempuan penting dalam serial animasi Dhot Design yang dibuat oleh Indra Sanjaya (Pak Badhot).
+                    </p>
+                    
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div>
+
+            <!-- Kartun 6 -->
+            <div class="kartu">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRczMVs3pwQjC7TH0soIIzpVn31lwyWs7QlkEjRZTC9Mg&s=10"
+                    alt="pemeran pendukung">
+
+                <div class="deskripsi">
+                    <h3> Lisa</h3>
+                    <p>
+                      Saudara Kembar Dinda: Lisa adalah anak kembar dari seorang ibu bernama Linda. Ia memiliki saudara kembar bernama Dinda.
+• Korban Penculikan Masa Lalu: Saat masih bayi, Lisa pernah diculik oleh ayahnya sendiri (Alex) yang menjadi pemabuk dan penjudi, lalu diberikan kepada orang lain dengan alasan kondisi ekonomi yang sulit.
+• Pusat Misteri dan Konflik: Serial "Siapakah Lisa" berfokus pada pencarian dan teka-teki mengenai identitas asli Lisa yang terpisah dari keluarga kandungnya.
+
+
+
+                    </p>
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div>           
+             <!-- Kartun 6 -->
+            <div class="kartu">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQYYlh_gemWAou-jxDfltSKQ2-oNEdFMe6tgd80maZLQ&s=10"
+                    alt="pemeran pendukung">
+
+                <div class="deskripsi">
+                    <h3> Gea</h3>
+                    <p>Gea adalah salah satu karakter perempuan penting dalam serial animasi sekolah dan drama emosional dari Dhot Design (karya Indra Sanjaya / Pak Badhot).
+                      • Gea menjadi pusat dari alur romansa, pendekatan (PDKT), dan kisah emosional bersama karakter Dhot (pemain gitar 4G yang tampan).
+• Katalis Emosi dalam Cerita: Hubungan antara Dhot dan Gea sering kali menghadirkan dinamika naik-turun khas masa remaja—mulai dari momen lucu, usaha Dhot mencari perhatian Gea (seperti aksi kocak di sekolah), hingga alur cerita yang menyentuh hati seperti saat Gea sakit dan harus menggunakan kursi
+
+
+                    </p>
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div> 
+            <!-- Kartun 6 -->
+            <div class="kartu">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB2VMTttzIzXk8-XhM6V4xiil6_mFm75UY9iCMc7y_0w&s=10"
+                    alt="pemeran pendukung">
+
+                <div class="deskripsi">
+                    <h3> Dinda</h3>
+                    <p>• Mantan Kekasih Dhot: Dinda dikenal melalui alur cerita romansa dan konflik sekolah, salah satunya dalam kisah putus cinta (Dinda Minta Putus / The Return of Dinda) yang cukup populer di kanal YouTube Dhot Design.
+• Katalis Konflik Cerita: Kehadiran Dinda memberikan dinamika emosional bagi karakter Dhot (seorang gitaris tampan dan anak dari Ibu Mika), serta menjadi bagian dari cerita keseharian anak SMA bersama geng 4G (Dhot, Kona, Robi, dan Peot).
+
+
+                    </p>
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div> 
+            
+            
+
+<!-- Kartun 6 -->
+            <div class="kartu">
+                <img
+                    src="data:image/jpeg;base64,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"
+                    alt="pemeran pendukung">
+
+                <div class="Pemeran utama dhot disaign">
+                    <h3> gang 4G</h3>
+                    <p>
+                      1. Jumlah Anggota: Geng ini terdiri dari 4 orang sahabat sejak masa kecil. Anggotanya adalah Dhot, Kona, Peot, dan Robi.
+2. Kepanjangan Humor/Pelesetan: Di dalam salah satu episode Dhokona School, nama 4G dicetuskan sebagai singkatan dari "Ganteng, Ganteng, Ganteng, Goblok". Tiga kata "Ganteng" mewakili Dhot, Robi, dan Peot, sedangkan kata "Goblok" disematkan kepada Kona.
+Geng
+
+
+                    </p>
+                    <a href="#tentang" class="tombol">Lihat Cerita</a>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </section>
+
+    <!-- Bagian tentang kami -->
+    <section id="tentang" class="tentang">
+        <h2>💖 Tentang Galeri Dhot Disaign</h2>
+
+        <p>
+            Galeri Animasi Kartun 2D merupakan halaman web
+            sederhana yang dibuat untuk menampilkan koleksi
+            ilustrasi kartun dengan desain modern, warna menarik,
+            dan efek animasi. Website ini dibuat menggunakan
+            HTML dan CSS.
+        </p>
+        <p>
+           Tawa yang tercipta, kejutan yang datang, dan kisah yang penuh tantangan menjadikan setiap momen begitu berkesan.
+          </p>
+          <p>
+✨ Jangan berhenti sampai di sini! Masih banyak keseruan dan petualangan yang menanti. Sampai jumpa di cerita berikutnya! ✨</p>
+
+<p>💜 Dhot Disaign — Satu Cerita, Seribu Keseruan!</p>
+        
+    </section>
+
+    <!-- Bagian footer -->
+    <footer>
+        <p>© 2026 Galeri Animasi Kartun Dhot Disaign 2D</p>
+        <p>Dibuat dengan ❤️ menggunakan HTML dan CSS</p>
+    </footer>
+
+</body>
+</html>
